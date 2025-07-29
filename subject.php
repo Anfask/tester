@@ -6,23 +6,21 @@ $subjects = array_filter(scandir($baseDir), function($f) use ($baseDir) {
     return is_dir("$baseDir/$f") && !in_array($f, ['.', '..']);
 });
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
     <title>Subjects - Class <?= htmlspecialchars($class) ?> <?= htmlspecialchars($div) ?></title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>.box{display:inline-block;padding:20px;margin:10px;background:#dff0d8;border-radius:10px;text-align:center;}</style>
 </head>
-<body class="bg-light">
-<div class="container py-5">
-    <h2 class="mb-4 text-center">📒 Subjects in Class <?= htmlspecialchars($class) ?> Division <?= htmlspecialchars($div) ?></h2>
-    <div class="row">
+<body>
+    <h2>📒 Subjects in Class <?= htmlspecialchars($class) ?> Division <?= htmlspecialchars($div) ?></h2>
     <?php foreach($subjects as $sub): ?>
-        <div class="col-md-3 mb-3">
-            <a href="content.php?class=<?= urlencode($class) ?>&div=<?= urlencode($div) ?>&sub=<?= urlencode($sub) ?>" class="btn btn-outline-success w-100 py-3"><?= htmlspecialchars($sub) ?></a>
+        <div class="box">
+            <a href="content.php?class=<?= urlencode($class) ?>&div=<?= urlencode($div) ?>&sub=<?= urlencode($sub) ?>">
+                <?= htmlspecialchars($sub) ?>
+            </a>
         </div>
     <?php endforeach; ?>
-    </div>
-</div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
